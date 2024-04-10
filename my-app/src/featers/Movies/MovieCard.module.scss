@@ -23,4 +23,14 @@
 
 .content {
     padding: 1rem;
+
+    .overviwe {
+        font-size: small;
+        color: shared.$dimmed-color;
+    }
+
+    .popularity {
+        margin-top: 0.5rem;
+        font-weight: bold;
+    }
 }

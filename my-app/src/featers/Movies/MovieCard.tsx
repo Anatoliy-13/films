@@ -17,8 +17,8 @@ export function MovieCard({ id, title, overviwe, popularity }: MovieCardProps) {
                 <div>
                     <Link to={`/movies/${id}`}>{title}</Link>
                 </div>
-                <div className="movies-card-overviwe">{overviwe}</div>
-                <div className="movies-card-popularity">{popularity}</div>
+                <div className={styles.overviwe}>{overviwe}</div>
+                <div className={styles.popularity}>{popularity}</div>
             </div>
         </div>
     )
