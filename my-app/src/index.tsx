@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { About } from './featers/About/About';
+import { Movies } from './featers/Movies/Movies';
 
 const router = createBrowserRouter([
   {
@@ -12,9 +13,13 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-    path: "/About",
+    path: "/about",
     element: <About />,
-  },
+      },
+        {
+    path: "/movies",
+    element: <Movies />,
+    },
     ]
   },
   

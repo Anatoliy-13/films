@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 function App() {
   return (
@@ -10,10 +10,19 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link className='App-link' to="/">Home</Link>
+          </li>
+                    <li>
+            <Link className='App-link' to="/Movies">Movies</Link>
+          </li>
+          <li>
+            <Link className='App-link' to="/About">About</Link>
           </li>
         </ul>
       </header>
+      <main className='App-main'>
+        <Outlet />
+      </main>
     </div>
   );
 }
