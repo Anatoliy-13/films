@@ -1,22 +1,28 @@
 import { RootState } from "../../Store";
 import { Movie } from "../../reducers/movies";
 import { connect } from "react-redux";
+import { MovieCard } from "./MovieCard";
+import "./Movies.css";
 
 interface MoviesProps {
     movies: Movie[]
 }
 
 function Movies({ movies }: MoviesProps) {
-    return <div>
-        <ul>
-            {movies.map((m) => (<li key={m.id}>
-                <div>{m.title}</div>
-                <div>{m.overviwe}</div>
-                <div>{m.popularity}</div>
-            </li>))
-            }
-         </ul>
-     </div>;
+    return (
+        <section>
+            <div className="movies-list">
+                {movies.map((m) => (
+                    <MovieCard
+                        key={m.id}
+                        id={m.id}
+                        title={m.title}
+                        overviwe={m.overviwe}
+                        popularity={m.popularity}
+                    />
+                ))}
+            </div>
+        </section>);
 }
 const mapStateToProps = (state: RootState) => ({
     movies: state.movies.top
