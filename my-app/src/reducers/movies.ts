@@ -6,7 +6,7 @@ export interface Movie {
     id: number;
     title: string;
     popularity: number;
-    overviwe: string;
+    overview: string;
 }
 
 interface MoviesState {
@@ -15,11 +15,11 @@ interface MoviesState {
 
 const initialState: MoviesState = {
     top: [
-        { id: 1, title: "Inception", popularity: 98, overviwe: "Dreams..." },
-        { id: 2, title: "The Goldfather", popularity: 97, overviwe: "Goldfather..." },
-        { id: 3, title: "The dark Knight", popularity: 96.5, overviwe: "Batman..." },
-        { id: 4, title: "The Goldfather Part II", popularity: 96, overviwe: "Part II..." },
-        {id: 5, title: "The Goldfather Part II", popularity:96, overviwe: "Part II..."},
+        { id: 1, title: "Inception", popularity: 98, overview: "Dreams..." },
+        { id: 2, title: "The Goldfather", popularity: 97, overview: "Goldfather..." },
+        { id: 3, title: "The dark Knight", popularity: 96.5, overview: "Batman..." },
+        { id: 4, title: "The Goldfather Part II", popularity: 96, overview: "Part II..." },
+        {id: 5, title: "The Goldfather Part II", popularity:96, overview: "Part II..."},
     ]
 }
 

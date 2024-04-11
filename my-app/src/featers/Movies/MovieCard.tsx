@@ -5,11 +5,11 @@ import styles from "./MovieCard.module.scss";
 interface MovieCardProps {
     id: number;
     title: string;
-    overviwe: string;
+    overview: string;
     popularity: number;
 }
 
-export function MovieCard({ id, title, overviwe, popularity }: MovieCardProps) {
+export function MovieCard({ id, title, overview, popularity }: MovieCardProps) {
     return (
         <div className={styles.card}>
             <img className={styles.thumbnail} src="/movie-thumb.png" alt="Movie thumbmail" />
@@ -17,7 +17,7 @@ export function MovieCard({ id, title, overviwe, popularity }: MovieCardProps) {
                 <div>
                     <Link to={`/movies/${id}`}>{title}</Link>
                 </div>
-                <div className={styles.overviwe}>{overviwe}</div>
+                <div className={styles.overview}>{overview}</div>
                 <div className={styles.popularity}>{popularity}</div>
             </div>
         </div>
