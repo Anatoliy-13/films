@@ -4,28 +4,27 @@ import { connect } from "react-redux";
 import { MovieCard } from "./MovieCard";
 import styles from "./Movies.module.scss";
 import { useEffect, useState } from "react";
+import { MovieDetails, client } from "../../api/tmdb";
 
-async function getNowPlaying() {
-    const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4Mjc0NjFmNzVkNjUwZGM3NGRkYWU4NzA2ODI3MWQ5ZSIsInN1YiI6IjY2MTdjN2U2ZThhM2UxMDE3Y2ExYjZlNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6n8N5Zyz6_kOjynCaQx2m1Qqqd6_j1IGgj8gbMT-93c'
-    }
-};
-
-    const response = await fetch('https://api.themoviedb.org/3/movie/now_playing?page=1', options)
-    const json = response.json();
-
-    return json;
-}
 
 export function MoviesFetch() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState<MovieDetails[]>([]);
+
     useEffect(() => {
         async function loadData() {
-            const response = await getNowPlaying();
-            setMovies(response.results);
+            const config = await client.getConfiguration();
+            const imageUrl = config.images.base_url;
+            const results = await client.getNowPlaying();
+
+            const mappedResults: Movie[] = results.map((m) => ({
+                id: m.id,
+                title: m.title,
+                overview: m.overview,
+                popularity: m.popularity,
+                image: m.backdrop_path ? `${imageUrl}w780${m.backdrop_path}` : undefined,
+            }))
+
+            setMovies(mappedResults);
         }
         loadData();
     }, [])
@@ -47,6 +46,7 @@ function Movies({ movies }: MoviesProps) {
                         title={m.title}
                         overview={m.overview}
                         popularity={m.popularity}
+                        image={m.image}
                     />
                 ))}
             </div>

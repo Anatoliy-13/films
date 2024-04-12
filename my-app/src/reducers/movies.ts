@@ -7,6 +7,7 @@ export interface Movie {
     title: string;
     popularity: number;
     overview: string;
+    image?: string;
 }
 
 interface MoviesState {
