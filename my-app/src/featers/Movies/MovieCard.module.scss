@@ -31,11 +31,6 @@
     max-height: 200px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-
-    @media (min-width: shared.$max-full-width) {
-            max-height: 250px;
-        }
-
 }
 
 .content {

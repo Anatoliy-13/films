@@ -1,5 +1,5 @@
-import { Reducer } from "react";
-import { Action } from "redux";
+
+import { ActionWithPayLoaded, createReducer } from "../redux/utils";
 
 
 export interface Movie {
@@ -11,20 +11,44 @@ export interface Movie {
 }
 
 interface MoviesState {
-    top: Movie[]
+    top: Movie[];
+    loading: boolean;
 }
 
 const initialState: MoviesState = {
     top: [
-        { id: 1, title: "Inception", popularity: 98, overview: "Dreams..." },
-        { id: 2, title: "The Goldfather", popularity: 97, overview: "Goldfather..." },
-        { id: 3, title: "The dark Knight", popularity: 96.5, overview: "Batman..." },
-        { id: 4, title: "The Goldfather Part II", popularity: 96, overview: "Part II..." },
-        {id: 5, title: "The Goldfather Part II", popularity:96, overview: "Part II..."},
-    ]
+    ],
+    loading: false
 }
 
-const moviesReducers: Reducer<MoviesState, Action> = (state, action) => {
-    return initialState;
-}
+export const moviesLoaded = (movies: Movie[]) => ({
+    type: "movies/loaded",
+    payload: movies,
+})
+
+export const moviesLoading = () => ({
+    type: "movies/loading"
+})
+
+
+const moviesReducers = createReducer<MoviesState>(
+    initialState,
+    {
+        "movies/loaded": (state, action: ActionWithPayLoaded<Movie[]>) => {
+            return {
+                ...state,
+                top: action.payload,
+                loading: false
+            };
+        },
+
+        "movies/loading": (state, action) => {
+            return {
+                ...state,
+                loading: true,
+            };
+        },
+    },
+);
+
 export default moviesReducers;
