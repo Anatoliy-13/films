@@ -1,3 +1,8 @@
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
@@ -8,20 +13,34 @@ import { About } from './featers/About/About';
 import Movies from './featers/Movies/Movies';
 import { Provider } from 'react-redux';
 import store from './Store';
+import Home from './featers/Home/Home';
+
+
+function AppEntrypoint() {  
+  return (
+    <Provider store={store}>
+        <App />
+    </Provider>
+  );
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Provider store={store}><App /></Provider>,
+    element: <AppEntrypoint />,
     children: [
       {
-    path: "/about",
-    element: <About />,
+    path: "/",
+    element: <Home />,
       },
         {
     path: "/movies",
     element: <Movies />,
-    },
+      },
+         {
+    path: "/about",
+    element: <About />,
+      },
     ]
   },
   
