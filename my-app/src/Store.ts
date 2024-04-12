@@ -1,9 +1,22 @@
-import { createStore } from "redux";
+import { UnknownAction, applyMiddleware, createStore } from "redux";
 
 import rootReducer from "./reducers";
 
-const store = createStore(rootReducer);
+import {ThunkAction, thunk  } from "redux-thunk";
+import { composeWithDevTools } from "@redux-devtools/extension";
 
-export type RootState = ReturnType<typeof store.getState>
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunk));
+
+const store = createStore(rootReducer, composedEnhancer);
+
+export type AppDispatch = typeof store.dispatch;
+export type AppThunk<ReturnType> = ThunkAction<
+    ReturnType,
+    RootState,
+    undefined,
+    UnknownAction
+    >;
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store;
