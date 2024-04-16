@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { CssBaseline, createTheme } from "@mui/material";
 import { ThemeProvider } from '@emotion/react';
 import { teal } from '@mui/material/colors';
 import { Outlet } from 'react-router-dom';
 import { AppHeader } from './AppHeader';
+import { AuthContext, AuthInfo, anonymousUser } from './AuthContext';
 
 
 
@@ -17,14 +18,24 @@ const defaultTheme = createTheme({
   },
 });
 
+const fakeAuth: AuthInfo = {
+  user: {
+    name: "Anatolii",
+  },
+}
+
 function App() {
+
+  const [auth, setAuth] = useState<AuthInfo>({user: anonymousUser})
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <AppHeader />
+      <AuthContext.Provider value={auth}>
+        <AppHeader onLogin={() => setAuth(fakeAuth)} onLogout={() => setAuth({user: anonymousUser})} />
       <main>
         <Outlet />
       </main>
+      </AuthContext.Provider>
     </ThemeProvider>
   );
 }
