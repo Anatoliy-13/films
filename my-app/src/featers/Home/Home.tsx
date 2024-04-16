@@ -20,6 +20,8 @@ export default function Home() {
   const greeting = loggedIn 
     ? `${user.name}, explore movies today with us!`
     : "Explore movies today with us!"
+  
+  // throw new Error("Fatality!")
 
   return (
     <Box sx={{ bgcolor: "background.paper", pt: 8, pb: 8 }}>

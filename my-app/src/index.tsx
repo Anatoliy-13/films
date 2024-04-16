@@ -14,12 +14,15 @@ import Movies from './featers/Movies/Movies';
 import { Provider } from 'react-redux';
 import store from './Store';
 import Home from './featers/Home/Home';
+import { ErrorBoundary } from './ErrorBoundary';
 
 
 function AppEntrypoint() {  
   return (
     <Provider store={store}>
+      <ErrorBoundary>
         <App />
+      </ErrorBoundary>
     </Provider>
   );
 };
